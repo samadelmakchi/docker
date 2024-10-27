@@ -4,7 +4,6 @@ services:
 
   postgres:
     image: postgres:latest
-    container_name: ${APP_NAME}-postgres
     restart: always
     volumes:
       - ./nextcloud-data:/var/lib/postgresql/data
@@ -15,10 +14,9 @@ services:
 
   nextcloud:
     image: nextcloud:latest
-    container_name: ${APP_NAME}-nextcloud
     restart: always
     ports:
-      - ${INCOME_PORT_1}:80
+      - 8070:80
     links:
       - postgres
     volumes:
@@ -34,11 +32,10 @@ services:
 
   drawio:
     image: jgraph/drawio:latest
-    container_name: ${APP_NAME}-drawio
     restart: unless-stopped
     ports:
-      - ${INCOME_PORT_2}:8080
-      - ${INCOME_PORT_3}:8443
+      - 8080:8080
+      - 8443:8443
     environment:
       PUBLIC_DNS: domain
       ORGANISATION_UNIT: unit

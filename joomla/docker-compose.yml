@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  joomla:
+    image: joomla:latest
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      JOOMLA_DB_HOST: db
+      JOOMLA_DB_USER: ${MYSQL_USER}
+      JOOMLA_DB_PASSWORD: ${MYSQL_PASSWORD}
+      JOOMLA_DB_NAME: ${MYSQL_DB_NAME}
+      JOOMLA_SITE_NAME: ${J_SITE_NAME}
+      JOOMLA_ADMIN_USER: ${J_ADMIN_NAME}
+      JOOMLA_ADMIN_USERNAME: ${J_ADMIN_USER}
+      JOOMLA_ADMIN_PASSWORD: ${J_ADMIN_PASS}
+      JOOMLA_ADMIN_EMAIL: ${J_ADMIN_EMAIL}
+    volumes:
+      - ./joomla_data:/var/www/html
+    networks:
+      - joomla_network
+ 
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - joomla_network
+
+volumes:
+  joomla_data:
+  db_data:
