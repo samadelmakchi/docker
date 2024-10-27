@@ -1,3 +1,3 @@
-# Nextcloud, Nextoffice and Draw.io
+# Docker Compose files
 
-Install Nextcloud, Nextoffice and Draw.io using docker compose
+
