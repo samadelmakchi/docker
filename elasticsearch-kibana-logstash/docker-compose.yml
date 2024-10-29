@@ -1,51 +1,59 @@
+version: '3'
 services:
   elasticsearch:
-    image: elasticsearch:7.16.1
-    container_name: es
-    environment:
-      discovery.type: single-node
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    image: elasticsearch:7.9.1
+    container_name: elasticsearch
     ports:
       - "9200:9200"
       - "9300:9300"
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
+    volumes:
+      - test_data:/usr/share/elasticsearch/data/
+      - ./elk-config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
     networks:
-      - elastic
+      - elk
 
   logstash:
-    image: logstash:7.16.1
-    container_name: log
-    environment:
-      discovery.seed_hosts: logstash
-      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
-    volumes:
-      - ./logstash/pipeline/logstash-nginx.config:/usr/share/logstash/pipeline/logstash-nginx.config
-      - ./logstash/nginx.log:/home/nginx.log
+    image: logstash:7.9.1
+    container_name: logstash
     ports:
-      - "5000:5000/tcp"
-      - "5000:5000/udp"
       - "5044:5044"
       - "9600:9600"
+    volumes:
+      - ./elk-config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./elk-config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ls_data:/usr/share/logstash/data
+
+    networks:
+      - elk
     depends_on:
       - elasticsearch
-    networks:
-      - elastic
-    command: logstash -f /usr/share/logstash/pipeline/logstash-nginx.config
-    
+
   kibana:
-    image: kibana:7.16.1
-    container_name: kib
+    image: kibana:7.9.1
+    container_name: kibana
     ports:
       - "5601:5601"
+    volumes:
+      - ./elk-config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - kb_data:/usr/share/kibana/data
+    networks:
+      - elk
     depends_on:
       - elasticsearch
-    networks:
-      - elastic
 
 networks:
-  elastic:
+  elk:
     driver: bridge
+
+volumes:
+  test_data:
+  ls_data:
+  kb_data:

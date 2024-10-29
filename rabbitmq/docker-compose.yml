@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    restart: always
+    hostname: rabbitmq.example.com
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    ports:
+      - 4369:4369
+      - 5671:5671
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - './rabbitmq_data:/data'
+
+volumes:
+  rabbitmq_data:
+
+
+# docker exec simnad-rabbitmq rabbitmq-plugins enable rabbitmq_management
