@@ -2,7 +2,6 @@ version: '3.9'
 
 services:
   drawdb:
-    container_name: drawdb
     image: xinsodev/drawdb
     ports:
       - 3500:80
