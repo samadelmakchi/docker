@@ -2,55 +2,56 @@
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 [t01]: #
-[t02]: #
+[t02]: https://github.com/samadelmakchi/docker/tree/main/kanboard
 [t03]: https://github.com/samadelmakchi/docker/tree/main/nextcloud
-[t04]: #
+[t04]: https://github.com/samadelmakchi/docker/tree/main/kimai
 [t05]: #
-[t06]: #
+[t06]: https://github.com/samadelmakchi/docker/tree/main/mattermost-focalboard
 [t07]: #
 
-[d01]: #
+[d01]: https://github.com/samadelmakchi/docker/tree/main/portainer
 [d02]: #
-[d03]: #
-[d04]: #
+[d03]: https://github.com/samadelmakchi/docker/tree/main/rabbitmq
+[d04]: https://github.com/samadelmakchi/docker/tree/main/apprise
 [d05]: #
 
 [s01]: #
 [s02]: #
-[s03]: #
-[s04]: #
-[s05]: #
-[s06]: #
-[s07]: #
-[s08]: #
+[s03]: https://github.com/samadelmakchi/docker/tree/main/uptime_kuma
+[s04]: https://github.com/samadelmakchi/docker/tree/main/poste.io
+[s05]: https://github.com/samadelmakchi/docker/tree/main/mailserver
+[s06]: https://github.com/samadelmakchi/docker/tree/main/roundcube
+[s07]: https://github.com/samadelmakchi/docker/tree/main/cypht
+[s08]: https://github.com/samadelmakchi/docker/tree/main/elkarbackup
 [s09]: #
 [s10]: #
 [s11]: #
+[s12]: #
 
 [o01]: #
-[o02]: #
+[o02]: https://github.com/samadelmakchi/docker/tree/main/gitea
 [o03]: #
 [o04]: #
 [o05]: #
 [o06]: #
-[o07]: #
-[o08]: #
-[o09]: #
+[o07]: https://github.com/samadelmakchi/docker/tree/main/prometheus-grafana
+[o08]: https://github.com/samadelmakchi/docker/tree/main/elasticsearch-kibana-logstash
+[o09]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
 [o10]: #
 
-|DevOps                      |Development                     |Team Managment                 |Server                                |
-|------------------------------|--------------------------------|-------------------------------|--------------------------------------|
-|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02]     |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]             |
-|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]      |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Plane`][t02]          |Reverse Proxy:<br/> [`Traefik`][s02]          |
-|Ansible:<br/> [`AWX`][o05]                  |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03] |
-|Terraform:<br/> [`Gaia`][o06]               |Push Notifications:<br/> `Apprise`[][d04]     |Time Tracking:<br/> `Tuleap`[][t04]          |Mail Server:<br/> [][s04]                   |
-|Monitor:<br/> [`Grafana + Prometheus`][o07] |Caching Server:<br/> [`Redis`][d05]           |Password Managment:<br/> [`Teampass`][t05]   |Webmail Client:<br/> [][s05]                |
-|Log Management:<br/> [`ELK`][o08]           |                                |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s06]             |
-|Service Mesh:<br/> [`Consul`][o09]          |                                |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s07]               |
-|Secret Management:<br/> [`Vault`][o10]      |                                |                               |Web Server:<br/> [][s08]                    |
-|                              |                                |                               |Firewall:<br/> [][s09]                      |
-|                              |                                |                               |Terminal:<br/> [][s10]                      |
-|                              |                                |                               |File Manager:<br/> [][s11]                  |
+|DevOps                      |Development                     |Team Managment                 |Server                                 |
+|------------------------------|--------------------------------|-------------------------------|---------------------------------------|
+|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02]     |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]              |
+|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]      |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Kanboard`][t02]       |Reverse Proxy:<br/> [`Traefik`][s02]           |
+|Ansible:<br/> [`AWX`][o05]                  |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03]  |
+|Terraform:<br/> [`Gaia`][o06]               |Push Notifications:<br/> `Apprise`[][d04]     |Time Tracking:<br/> [`Kimai`][t04]           |Mail Server:<br/> [`Poste.io`][s04] [`Mail Server`][s05] |
+|Monitor:<br/> [`Grafana + Prometheus`][o07] |Caching Server:<br/> [`Redis`][d05]           |Password Managment:<br/> [`Teampass`][t05]   |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]  |
+|Log Management:<br/> [`ELK`][o08]           |                                |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]              |
+|Service Mesh:<br/> [`Consul`][o09]          |                                |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                |
+|Secret Management:<br/> [`Vault`][o09]      |                                |                               |Web Server:<br/> [][s10]                     |
+|                              |                                |                               |Firewall:<br/> [][s11]                       |
+|                              |                                |                               |Terminal:<br/> [][s12]                       |
+|                              |                                |                               |File Manager:<br/> [][s13]                   |
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 
