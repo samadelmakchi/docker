@@ -7,3 +7,18 @@ Both GitLab and Gitea are popular tools for managing Git repositories, but each 
 - GitLab, with its advanced CI/CD features, project management capabilities, and full DevOps integration, is a powerful platform suitable for large teams and extensive projects. Features like monitoring, issue management, and support for large repositories make GitLab an excellent choice for organizations and complex projects.
 
 - Gitea is a lightweight and simple software that can be installed quickly and consumes minimal system resources. This tool is ideal for small to medium-sized projects and for teams seeking a cost-effective solution with basic features. Gitea is also a perfect choice for those looking to host their code repositories with straightforward setup on personal servers.
+
+----
+
+[z01]: README.md
+[z02]: README-az.md
+[z03]: README-tr.md
+[z04]: README-fa.md
+
+[1.z01]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/en.svg (English)
+[1.z02]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/az.svg (Azərbaycani)
+[1.z03]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/tr.svg (Türkisch)
+[1.z04]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/fa.svg (فارسی)
+
+### Translate
+[![1.z04]][z04][![1.z03]][z03]  [![1.z02]][z02] 
