@@ -51,3 +51,17 @@ Docker Compose, çox konteynerli tətbiqlərin idarə edilməsi və işə salın
 |Service Mesh:<br/> [`Consul`][o09]               |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |
 |Secret Management:<br/> [`Vault`][o09]           |Diagram Tools:<br/> [`Draw.io`][d08]          |                                             |Firewall:<br/> [][s10]                                   |
 
+----
+
+[z01]: README.md
+[z02]: README-az.md
+[z03]: README-tr.md
+[z04]: README-fa.md
+
+[1.z01]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/en.svg (English)
+[1.z02]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/az.svg (Azərbaycani)
+[1.z03]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/tr.svg (Türkisch)
+[1.z04]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/fa.svg (فارسی)
+
+### Translate
+[![1.z01]][z01] [![1.z03]][z03] [![1.z04]][z04] 
