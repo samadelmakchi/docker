@@ -45,26 +45,26 @@ Docker Compose is a practical tool for managing and running multi-container appl
 [o13]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
 [o14]: #
 
-[z01]: #
-[z02]: #
-[z03]: #
-[z04]: #
-[z05]: #
-[z06]: #
-[z07]: #
-[z08]: #
+[k01]: #
+[k02]: #
+[k03]: #
+[k04]: #
+[k05]: #
+[k06]: #
+[k07]: #
+[k08]: #
 
 |DevOps                                                       |Development                                   |Team Managment                               |Server                                                   |Dockerize           |
 |-------------------------------------------------------------|----------------------------------------------|---------------------------------------------|---------------------------------------------------------|--------------------|
-|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02]             |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]                        |[`FastAPI`][z01]    |
-|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]              |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Kanboard`][t02]       |Reverse Proxy:<br/> [`Traefik`][s02]                     |[`Django`][z02]     |
-|Ansible:<br/> [`AWX`][o05] [`Semaphore`][o06]                |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud Storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03]            |[`PHP`][z03]        |
-|Terraform:<br/> [`Gaia`][o07]                                |Push Notifications:<br/> [`Apprise`][d04]     |Time Tracking:<br/> [`Kimai`][t04]           |Mail Server:<br/> [`Poste.io`][s04] [`Mail Server`][s05] |[`Nodejs`][z04]     |
-|Monitor:<br/> [`Grafana + Prometheus`][o08] [`Netdata`][o09] |IDE:<br/> [`VS Code`][d05]                    |Password Managment:<br/> [][t05]             |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]   |[`Vue`][z05]        |
-|Log Management:<br/> [`ELK`][o10] [`Dozzle`][o11]            |Time Tracking:<br/> [`HakaTime`][d06]         |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]                        |[`React`][z06]      |
-|Service Mesh:<br/> [`Consul`][o12]                           |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |[`Python ML`][z07]  |
+|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02]             |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]                        |[`FastAPI`][k01]    |
+|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]              |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Kanboard`][t02]       |Reverse Proxy:<br/> [`Traefik`][s02]                     |[`Django`][k02]     |
+|Ansible:<br/> [`AWX`][o05] [`Semaphore`][o06]                |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud Storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03]            |[`PHP`][k03]        |
+|Terraform:<br/> [`Gaia`][o07]                                |Push Notifications:<br/> [`Apprise`][d04]     |Time Tracking:<br/> [`Kimai`][t04]           |Mail Server:<br/> [`Poste.io`][s04] [`Mail Server`][s05] |[`Nodejs`][k04]     |
+|Monitor:<br/> [`Grafana + Prometheus`][o08] [`Netdata`][o09] |IDE:<br/> [`VS Code`][d05]                    |Password Managment:<br/> [][t05]             |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]   |[`Vue`][k05]        |
+|Log Management:<br/> [`ELK`][o10] [`Dozzle`][o11]            |Time Tracking:<br/> [`HakaTime`][d06]         |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]                        |[`React`][k06]      |
+|Service Mesh:<br/> [`Consul`][o12]                           |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |[`Python ML`][k07]  |
 |Secret Management:<br/> [`Vault`][o13]                       |Diagram Tools:<br/> [`Draw.io`][d08]          |Help Desk:<br/> [`Trudesk`][t08]             |Firewall:<br/> [][s10]                                   |                    |
-|Code Quality Assurance:<br/> [`SonarQube`][o14]              |                                              |                                             |                                                         |[`Wordpress`][z08]  |
+|Code Quality Assurance:<br/> [`SonarQube`][o14]              |                                              |                                             |                                                         |[`Wordpress`][k08]  |
 
 <!-- 
 Whitout Content 
