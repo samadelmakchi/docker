@@ -63,8 +63,8 @@ Docker Compose, çox konteynerli tətbiqlərin idarə edilməsi və işə salın
 |Monitor:<br/> [`Grafana + Prometheus`][o08] [`Netdata`][o09] |IDE:<br/> [`VS Code`][d05]                    |Password Managment:<br/> [][t05]             |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]   |[`Vue`][k05]        |
 |Log Management:<br/> [`ELK`][o10] [`Dozzle`][o11]            |Time Tracking:<br/> [`HakaTime`][d06]         |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]                        |[`React`][k06]      |
 |Service Mesh:<br/> [`Consul`][o12]                           |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |[`Python ML`][k07]  |
-|Secret Management:<br/> [`Vault`][o13]                       |Diagram Tools:<br/> [`Draw.io`][d08]          |Help Desk:<br/> [`Trudesk`][t08]             |Firewall:<br/> [][s10]                                   |                    |
-|Code Quality Assurance:<br/> [`SonarQube`][o14]              |                                              |                                             |                                                         |[`Wordpress`][k08]  |
+|Secret Management:<br/> [`Vault`][o13]                       |Diagram Tools:<br/> [`Draw.io`][d08]          |Help Desk:<br/> [`Trudesk`][t08]             |Firewall:<br/> [][s10]                                   |[`Wordpress`][k08]  |
+|Code Quality Assurance:<br/> [`SonarQube`][o14]              |                                              |                                             |                                                         |                    |
 
 ----
 
