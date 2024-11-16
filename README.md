@@ -41,7 +41,7 @@ Docker Compose is a practical tool for managing and running multi-container appl
 [o09]: #
 [o10]: https://github.com/samadelmakchi/docker/tree/main/elasticsearch-kibana-logstash
 [o11]: #
-[o10]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
+[o12]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
 [o13]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
 [o14]: #
 
