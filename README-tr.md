@@ -8,6 +8,7 @@ Docker Compose, çok konteynerli uygulamaları yönetmek ve çalıştırmak içi
 [t05]: #
 [t06]: https://github.com/samadelmakchi/docker/tree/main/mattermost-focalboard
 [t07]: #
+[t08]: https://github.com/samadelmakchi/docker/tree/main/trudesk
 
 [d01]: https://github.com/samadelmakchi/docker/tree/main/portainer
 [d02]: #
@@ -35,21 +36,36 @@ Docker Compose, çok konteynerli uygulamaları yönetmek ve çalıştırmak içi
 [o04]: #
 [o05]: #
 [o06]: #
-[o07]: https://github.com/samadelmakchi/docker/tree/main/prometheus-grafana
-[o08]: https://github.com/samadelmakchi/docker/tree/main/elasticsearch-kibana-logstash
-[o09]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
-[o10]: #
+[o07]: #
+[o08]: https://github.com/samadelmakchi/docker/tree/main/prometheus-grafana
+[o09]: #
+[o10]: https://github.com/samadelmakchi/docker/tree/main/elasticsearch-kibana-logstash
+[o11]: #
+[o10]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
+[o13]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
+[o14]: #
 
-|DevOps                                           |Development                                   |Team Managment                               |Server                                                   |
-|-------------------------------------------------|----------------------------------------------|---------------------------------------------|---------------------------------------------------------|
-|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02] |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]                        |
-|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]  |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Kanboard`][t02]       |Reverse Proxy:<br/> [`Traefik`][s02]                     |
-|Ansible:<br/> [`AWX`][o05]                       |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud Storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03]            |
-|Terraform:<br/> [`Gaia`][o06]                    |Push Notifications:<br/> [`Apprise`][d04]     |Time Tracking:<br/> [`Kimai`][t04]           |Mail Server:<br/> [`Poste.io`][s04] [`Mail Server`][s05] |
-|Monitor:<br/> [`Grafana + Prometheus`][o07]      |IDE:<br/> [`VS Code`][d05]                    |Password Managment:<br/> [`Teampass`][t05]   |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]   |
-|Log Management:<br/> [`ELK`][o08]                |Time Tracking:<br/> [`HakaTime`][d06]         |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]                        |
-|Service Mesh:<br/> [`Consul`][o09]               |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |
-|Secret Management:<br/> [`Vault`][o09]           |Diagram Tools:<br/> [`Draw.io`][d08]          |                                             |Firewall:<br/> [][s10]                                   |
+[z01]: #
+[z02]: #
+[z03]: #
+[z04]: #
+[z05]: #
+[z06]: #
+[z07]: #
+[z08]: #
+
+|DevOps                                                       |Development                                   |Team Managment                               |Server                                                   |Dockerize           |
+|-------------------------------------------------------------|----------------------------------------------|---------------------------------------------|---------------------------------------------------------|--------------------|
+|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02]             |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]                        |[`FastAPI`][z01]    |
+|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]              |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Kanboard`][t02]       |Reverse Proxy:<br/> [`Traefik`][s02]                     |[`Django`][z02]     |
+|Ansible:<br/> [`AWX`][o05] [`Semaphore`][o06]                |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud Storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03]            |[`PHP`][z03]        |
+|Terraform:<br/> [`Gaia`][o07]                                |Push Notifications:<br/> [`Apprise`][d04]     |Time Tracking:<br/> [`Kimai`][t04]           |Mail Server:<br/> [`Poste.io`][s04] [`Mail Server`][s05] |[`Nodejs`][z04]     |
+|Monitor:<br/> [`Grafana + Prometheus`][o08] [`Netdata`][o09] |IDE:<br/> [`VS Code`][d05]                    |Password Managment:<br/> [``][t05]           |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]   |[`Vue`][z05]        |
+|Log Management:<br/> [`ELK`][o10] [`Dozzle`][o11]            |Time Tracking:<br/> [`HakaTime`][d06]         |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]                        |[`React`][z06]      |
+|Service Mesh:<br/> [`Consul`][o12]                           |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |[`Python ML`][z07]  |
+|Secret Management:<br/> [`Vault`][o13]                       |Diagram Tools:<br/> [`Draw.io`][d08]          |Help Desk:<br/> [`Trudesk`][t08]             |Firewall:<br/> [][s10]                                   |                    |
+|Code Quality Assurance:<br/> [`SonarQube`][o14]              |                                              |                                             |                                                         |[`Wordpress`][z08]  |
+                                 |
 
 ----
 
