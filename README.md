@@ -77,11 +77,14 @@ Add
 Dockerize : FastAPI - PostgreSQL
             Django - PostgreSQL
             PHP - Apache - MySQL - PHPMyAdmin
-            PHP - Nginx - MySQL
+            PHP - Nginx - MySQL - PHPMyAdmin
             Nodejs - MongoDB
             Vue
             React
             Wordpress
+
+https://github.com/docker/awesome-compose/tree/master
+
 -->
 
 ----
