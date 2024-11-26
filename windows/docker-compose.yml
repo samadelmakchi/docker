@@ -1,0 +1,25 @@
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    environment:
+      VERSION: "11"
+      DISK_SIZE: "256G"
+      RAM_SIZE: "6G"
+      CPU_CORES: "4"
+      USERNAME: "smd"
+      PASSWORD: "6165"
+      REGION: "en-US"
+      KEYBOARD: "fa-IR"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./storage:/storage
+      -  ./share:/data
+    ports:
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    stop_grace_period: 2m
