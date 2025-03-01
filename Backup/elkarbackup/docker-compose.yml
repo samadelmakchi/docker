@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  elkarbackup:
+    container_name: elkarbackup
+    image: elkarbackup/elkarbackup:latest
+    environment:
+      SYMFONY__DATABASE__PASSWORD: "elkarbackup_pass"
+      EB_CRON: "enabled"
+      SYMFONY__DATABASE__HOST: "elkarbackup-db"
+    volumes:
+      - ./backups:/app/backups
+      - ./uploads:/app/uploads
+      - ./sshkeys:/app/.ssh
+    ports:
+      - 8100:80
+    depends_on:
+      - elkarbackup-db
+    networks:
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.elkarbackup.rule=Host(`elkarbackup.elmakchi.ir`)"
+      - "traefik.http.routers.elkarbackup.entrypoints=websecure"
+      - "traefik.http.routers.elkarbackup.tls.certresolver=myresolver"
+      - "traefik.http.services.elkarbackup.loadbalancer.server.port=80"
+
+  elkarbackup-db:
+    container_name: elkarbackup_db
+    image: mysql:5.7.22
+    environment:
+      MYSQL_ROOT_PASSWORD: "elkarbackup_pass"
+      MYSQL_DATABASE: "elkarbackup_db"
+      MYSQL_USER: "elkarbackup_user"
+      MYSQL_PASSWORD: "user_password"
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - traefik_reverse_proxy
+
+networks:
+  traefik_reverse_proxy:
+    external: true

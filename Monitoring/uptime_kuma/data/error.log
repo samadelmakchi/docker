@@ -1,0 +1,9 @@
+[2025-02-11 07:49:40] Error [ERR_SERVER_NOT_RUNNING]: Server is not running.
+    at new NodeError (node:internal/errors:405:5)
+    at Server.close (node:net:2161:12)
+    at Object.onceWrapper (node:events:631:28)
+    at Server.emit (node:events:529:35)
+    at emitCloseNT (node:net:2221:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21) {
+  code: 'ERR_SERVER_NOT_RUNNING'
+}

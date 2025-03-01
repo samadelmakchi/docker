@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: chatwoot_postgres
+    environment:
+      POSTGRES_USER: chatwoot
+      POSTGRES_PASSWORD: chatwoot
+      POSTGRES_DB: chatwoot_production
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    container_name: chatwoot_redis
+    restart: always
+
+  chatwoot:
+    image: chatwoot/chatwoot
+    container_name: chatwoot
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      RAILS_ENV: production
+      POSTGRES_HOST: postgres
+      POSTGRES_DATABASE: chatwoot_production
+      POSTGRES_USERNAME: chatwoot
+      POSTGRES_PASSWORD: chatwoot
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3000:3000"
+    volumes:
+      - chatwoot_data:/app/storage
+    command: "rails s -b '0.0.0.0'"  # برای شروع سرور
+
+volumes:
+  postgres_data:
+  chatwoot_data:

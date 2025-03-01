@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  urbackup:
+    image: uroni/urbackup-server
+    container_name: urbackup
+    ports:
+      - "55413:55413"
+      - "55414:55414"
+    volumes:
+      - ./backups:/backups
+      - ./data:/data
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.urbackup.rule=Host(`urbackup.elmakchi.ir`)"
+      - "traefik.http.routers.urbackup.entrypoints=websecure"
+      - "traefik.http.routers.urbackup.tls.certresolver=myresolver"
+      - "traefik.http.services.urbackup.loadbalancer.server.port=55414"
+    networks:
+      - traefik_reverse_proxy
+
+volumes:
+  backup:
+  data:
+
+networks:
+  traefik_reverse_proxy:
+    external: true

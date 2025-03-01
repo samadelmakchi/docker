@@ -1,0 +1,64 @@
+version: '3'
+services:
+  elasticsearch:
+    image: elasticsearch:7.9.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - test_data:/usr/share/elasticsearch/data/
+      - ./elk-config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
+    networks:
+      - elk
+
+  logstash:
+    image: logstash:7.9.1
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - ./elk-config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./elk-config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ls_data:/usr/share/logstash/data
+
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: kibana:7.9.1
+    ports:
+      - "5601:5601"
+    volumes:
+      - ./elk-config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - kb_data:/usr/share/kibana/data
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kibana.rule=Host(`kibana.elmakchi.ir`)"
+      - "traefik.http.routers.kibana.entrypoints=websecure"
+      - "traefik.http.routers.kibana.tls.certresolver=myresolver"
+      - "traefik.http.services.kibana.loadbalancer.server.port=80"
+
+networks:
+  elk:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true
+
+volumes:
+  test_data:
+  ls_data:
+  kb_data:

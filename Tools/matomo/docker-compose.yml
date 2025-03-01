@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  matomo-db:
+    image: mariadb:latest
+    container_name: matomo_db
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - traefik_reverse_proxy 
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: matomo
+      MYSQL_USER: matomo_user
+      MYSQL_PASSWORD: matomo_password
+
+  matomo:
+    image: matomo:latest
+    container_name: matomo_app
+    restart: always
+    networks:
+      - traefik_reverse_proxy 
+    depends_on:
+      - matomo-db
+    volumes:
+      - matomo_data:/var/www/html
+    environment:
+      MATOMO_DATABASE_HOST: matomo-db
+      MATOMO_DATABASE_ADAPTER: mysql
+      MATOMO_DATABASE_TABLES_PREFIX: matomo_
+      MATOMO_DATABASE_USERNAME: matomo_user
+      MATOMO_DATABASE_PASSWORD: matomo_password
+      MATOMO_DATABASE_DBNAME: matomo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.matomo.rule=Host(`matomo.elmakchi.ir`)"
+      - "traefik.http.routers.matomo.entrypoints=websecure"
+      - "traefik.http.routers.matomo.tls.certresolver=myresolver"
+      - "traefik.http.services.matomo.loadbalancer.server.port=80"
+
+volumes:
+  db_data:
+  matomo_data:
+
+networks:
+  traefik_reverse_proxy:
+    external: true

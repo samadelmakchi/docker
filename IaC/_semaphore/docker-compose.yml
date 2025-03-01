@@ -1,0 +1,63 @@
+version: '3.7'
+
+services:
+  semaphore:
+    image: semaphoreci/semaphore:latest
+    container_name: semaphore
+    ports:
+      - "3000:3000"  # پورت دسترسی به UI Semaphore
+    environment:
+      - DB_URI=mongodb://semaphore-db:27017/semaphore
+      - REDIS_URI=redis://semaphore-redis:6379
+      - SMTP_HOST=smtp.elmakchi.ir  # در صورت استفاده از سرویس ایمیل
+      - SMTP_PORT=587  # پورت سرویس ایمیل
+      - SMTP_USER=your-info@elmakchi.ir  # ایمیل شما
+      - SMTP_PASS=your-smd6165  # پسورد ایمیل
+      - ADMIN_EMAIL=samad.elmakchi@gmail.com  # ایمیل مدیر
+      - ADMIN_PASSWORD=61656165  # پسورد مدیر
+    volumes:
+      - ./semaphore-config:/etc/semaphore
+      - ./semaphore-data:/var/lib/semaphore
+    depends_on:
+      - semaphore-db
+      - semaphore-redis
+    networks:
+      - dev_network
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.semaphore.rule=Host(`semaphore.elmakchi.ir`)"
+      - "traefik.http.routers.semaphore.entrypoints=websecure"
+      - "traefik.http.routers.semaphore.tls.certresolver=myresolver"
+      - "traefik.http.services.semaphore.loadbalancer.server.port=3000"
+
+  semaphore-db:
+    image: mongo:latest
+    container_name: semaphore-db
+    volumes:
+      - ./semaphore-db-data:/data/db
+    networks:
+      - dev_network
+      - traefik_reverse_proxy
+
+  semaphore-redis:
+    image: redis:latest
+    container_name: semaphore-redis
+    networks:
+      - dev_network
+      - traefik_reverse_proxy
+
+  ansible:
+    image: williamyeh/ansible:alpine3
+    container_name: ansible
+    volumes:
+      - ./ansible:/ansible  # مسیر Playbook های Ansible شما
+    command: ["tail", "-f", "/dev/null"]  # این دستور باعث می‌شود کانتینر به صورت دائم در حال اجرا بماند
+    networks:
+      - dev_network
+
+networks:
+  dev_network:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true

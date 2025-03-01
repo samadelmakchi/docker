@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  filerun:
+    image: afian/filerun
+    container_name: filerun
+    ports:
+      - 80:80
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourpassword
+      - MYSQL_USER=filerun
+      - MYSQL_PASSWORD=filerun
+      - MYSQL_DATABASE=filerun
+    volumes:
+      - filerun_data:/var/www/html
+    depends_on:
+      - mysql
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filerun.rule=Host(`filerun.elmakchi.ir`)"
+      - "traefik.http.routers.filerun.entrypoints=websecure"
+      - "traefik.http.routers.filerun.tls.certresolver=myresolver"
+      - "traefik.http.services.filerun.loadbalancer.server.port=80"
+    networks:
+      - traefik_reverse_proxy
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourpassword
+      - MYSQL_USER=filerun
+      - MYSQL_PASSWORD=filerun
+      - MYSQL_DATABASE=filerun
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    networks:
+      - traefik_reverse_proxy
+
+volumes:
+  filerun_data:
+  mysql_data:
+
+networks:
+  traefik_reverse_proxy:
+    external: true

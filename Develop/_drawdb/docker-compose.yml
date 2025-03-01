@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  drawdb:
+    image: xinsodev/drawdb
+    ports:
+      - 3500:80
+    restart: always
+

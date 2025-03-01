@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  loki:
+    image: grafana/loki:2.8.2
+    container_name: loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml
+      - ./loki-data:/loki
+    command: -config.file=/etc/loki/loki-config.yaml
+    restart: always
+    networks:
+      - loki-network
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.loki.rule=Host(`loki.elmakchi.ir`)"
+      - "traefik.http.routers.loki.entrypoints=websecure"
+      - "traefik.http.routers.loki.tls.certresolver=myresolver"
+      - "traefik.http.services.loki.loadbalancer.server.port=80"
+
+  promtail:
+    image: grafana/promtail:2.8.2
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - /etc/promtail/promtail-config.yaml:/etc/promtail/promtail-config.yaml
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    restart: always
+    networks:
+      - loki-network
+      - traefik_reverse_proxy
+
+networks:
+  loki-network:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true
+

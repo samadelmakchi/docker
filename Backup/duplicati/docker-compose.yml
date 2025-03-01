@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  duplicati:
+    image: duplicati/duplicati
+    container_name: duplicati
+    ports:
+      - "8200:8200"
+    volumes:
+      - ./duplicati_config:/config
+      - ./duplicati_data:/data
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - DUPLICATI__WEB__PASSWORD=61656165
+    - DUPLICATI__WEBSERVICE_PASSWORD=61656165
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.duplicati.rule=Host(`duplicati.elmakchi.ir`)"
+      - "traefik.http.routers.duplicati.entrypoints=websecure"
+      - "traefik.http.routers.duplicati.tls.certresolver=myresolver"
+      - "traefik.http.services.duplicati.loadbalancer.server.port=8200"
+    networks:
+      - traefik_reverse_proxy
+
+  rclone:
+    image: rclone/rclone
+    container_name: rclone
+    volumes:
+      - ./rclone_config:/config
+      - ./duplicati_data:/data
+    command: "rclone mount <remote_name>:<remote_path> /mnt --allow-other --vfs-cache-mode writes --daemon"
+    restart: unless-stopped
+    networks:
+      - traefik_reverse_proxy
+
+volumes:
+  duplicati_config:
+  duplicati_data:
+  rclone_config:
+
+networks:
+  traefik_reverse_proxy:
+    external: true

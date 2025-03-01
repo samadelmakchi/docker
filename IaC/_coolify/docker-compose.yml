@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  coolify:
+    image: coollabsio/coolify:latest
+    container_name: coolify
+    restart: always
+    environment:
+      - COOLIFY_PASSWORD=61656165               # رمز عبور برای ورود به داشبورد
+      - COORDINATOR_HOST=localhost              # نام میزبان برای هماهنگ‌کننده
+      - DB_PASSWORD=postgres_pass_coolify       # رمز عبور برای دیتابیس
+      - COOLIFY_PORT=3000                       # پورت برای دسترسی به داشبورد
+    ports:
+      - "3000:3000"  # پورت دسترسی به داشبورد Coolify
+      - "80:80"      # پورت HTTP برای اپلیکیشن‌ها
+      - "443:443"    # پورت HTTPS برای اپلیکیشن‌ها
+    volumes:
+      - coolify_data:/coolify/data
+      - coolify_config:/coolify/config
+    networks:
+      - coolify_network
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.coolify.rule=Host(`coolify.elmakchi.ir`)"
+      - "traefik.http.routers.coolify.entrypoints=websecure"
+      - "traefik.http.routers.coolify.tls.certresolver=myresolver"
+      - "traefik.http.services.coolify.loadbalancer.server.port=3000"
+
+  db:
+    image: postgres:13
+    container_name: coolify_db
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres_pass_coolify  # رمز عبور برای دیتابیس
+    volumes:
+      - coolify_db_data:/var/lib/postgresql/data
+    networks:
+      - coolify_network
+      - traefik_reverse_proxy
+
+networks:
+  coolify_network:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true
+
+volumes:
+  coolify_data:
+  coolify_config:
+  coolify_db_data:

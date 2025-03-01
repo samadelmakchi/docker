@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  caprover:
+    image: caprover/caprover:v2.0.0
+    container_name: caprover
+    restart: always
+    environment:
+      - MAIN_NODE_IP=127.0.0.1   # آدرس IP سرور خود را وارد کنید
+      - CAPROVER_PASSWORD=61656165 # یک رمز عبور برای دسترسی به داشبورد CapRover
+    ports:
+      - "80:80"  # پورت HTTP
+      - "443:443" # پورت HTTPS
+      - "3000:3000" # پورت داشبورد CapRover
+    volumes:
+      - /var/lib/caprover:/captain/data
+    networks:
+      - caprover-network
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.caprover.rule=Host(`caprover.elmakchi.ir`)"
+      - "traefik.http.routers.caprover.entrypoints=websecure"
+      - "traefik.http.routers.caprover.tls.certresolver=myresolver"
+      - "traefik.http.services.caprover.loadbalancer.server.port=80"
+
+networks:
+  caprover-network:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true
+
+# volumes:
+#   data:

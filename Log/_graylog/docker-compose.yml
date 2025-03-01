@@ -1,0 +1,67 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:4.2
+    container_name: mongodb
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - graylog
+      - traefik_reverse_proxy
+
+  elasticsearch:
+    image: elasticsearch:7.9.1  # استفاده از نسخه 7.9.1
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.type=single-node"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - graylog
+      - traefik_reverse_proxy
+    ports:
+      - "9200:9200"
+
+  graylog:
+    image: graylog/graylog:4.3
+    container_name: graylog
+    restart: always
+    environment:
+      - GRAYLOG_PASSWORD_SECRET=SuperSecretPassword123!
+      - GRAYLOG_ROOT_PASSWORD_SHA2=your_sha256_hash
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+    entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 -- /docker-entrypoint.sh
+    depends_on:
+      - mongodb
+      - elasticsearch
+    volumes:
+      - graylog_data:/usr/share/graylog/data
+    networks:
+      - graylog
+      - traefik_reverse_proxy
+    ports:
+      - "9000:9000"  # Graylog Web UI
+      - "1514:1514"  # Syslog TCP
+      - "1514:1514/udp"  # Syslog UDP
+      - "12201:12201"  # GELF TCP
+      - "12201:12201/udp"  # GELF UDP
+      - "13301:13301/tcp"  # Fluentd Log Input
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.graylog.rule=Host(`graylog.elmakchi.ir`)"
+      - "traefik.http.routers.graylog.entrypoints=websecure"
+      - "traefik.http.routers.graylog.tls.certresolver=myresolver"
+      - "traefik.http.services.graylog.loadbalancer.server.port=80"
+
+volumes:
+  mongo_data:
+  es_data:
+  graylog_data:
+
+networks:
+  graylog:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true

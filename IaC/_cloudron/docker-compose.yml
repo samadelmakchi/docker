@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  cloudron:
+    image: cloudron/cloudron:latest
+    container_name: cloudron
+    restart: always
+    environment:
+      - DB_PASSWORD=db_pass      # رمز عبور دیتابیس Cloudron
+      - ADMIN_PASSWORD=61656165 # رمز عبور ادمین برای دسترسی به داشبورد
+    ports:
+      - "8091:80"   # پورت HTTP برای دسترسی به Cloudron
+      - "443:443" # پورت HTTPS برای دسترسی امن
+    volumes:
+      - /mnt/cloudron:/app/data
+    networks:
+      - cloudron-network
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cloudron.rule=Host(`cloudron.elmakchi.ir`)"
+      - "traefik.http.routers.cloudron.entrypoints=websecure"
+      - "traefik.http.routers.cloudron.tls.certresolver=myresolver"
+      - "traefik.http.services.cloudron.loadbalancer.server.port=80"
+
+networks:
+  cloudron-network:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true
+
+# volumes:
+#   data:

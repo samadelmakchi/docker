@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - ./nextcloud-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRES_USER: ${POSTGRESQL_USER}
+      POSTGRES_DB: ${POSTGRESQL_DB}
+
+  nextcloud:
+    image: nextcloud:latest
+    restart: always
+    ports:
+      - 8070:80
+    links:
+      - postgres
+    volumes:
+      - ./nextcloud:/var/www/html
+      - ./nextcloud/apps:/var/www/html/custom_apps
+      - ./nextcloud/config:/var/www/html/config
+      - ./nextcloud/data:/var/www/html/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+      - POSTGRES_DB=${POSTGRESQL_DB}
+      - POSTGRES_USER=${POSTGRESQL_USER}
+      - POSTGRES_HOST=postgres
+
+volumes:
+  nextcloud-data:
+  nextcloud:

@@ -1,0 +1,61 @@
+version: "3"
+ 
+services:
+  server:
+    image: mujx/hakatime:v1.7.3
+    environment:
+      HAKA_DB_HOST: haka_db
+      HAKA_DB_PORT: 5432
+      HAKA_DB_NAME: hakatime_postgres_db
+      HAKA_DB_PASS: hakatime_postgres_pass
+      HAKA_DB_USER: hakatime_postgres_user
+      HAKA_API_PREFIX: ""
+      HAKA_BADGE_URL: "http://localhost:8080"
+      HAKA_PORT: 8080
+      HAKA_SHIELDS_IO_URL: "https://img.shields.io"
+      HAKA_ENABLE_REGISTRATION: "true"
+      HAKA_SESSION_EXPIRY: "24"
+      HAKA_LOG_LEVEL: "info"
+      HAKA_ENV: "dev"
+      HAKA_HTTP_LOG: "true"
+      GITHUB_TOKEN: "<token>"
+      HAKA_REMOTE_WRITE_URL: "https://wakatime.com/api/v1/users/current/heartbeats.bulk"
+      HAKA_REMOTE_WRITE_TOKEN: "<token>"
+    ports:
+      - "8080:8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hakatime.rule=Host(`hakatime.elmakchi.ir`)"
+      - "traefik.http.routers.hakatime.entrypoints=websecure"
+      - "traefik.http.routers.hakatime.tls.certresolver=myresolver"
+      - "traefik.http.services.hakatime.loadbalancer.server.port=80"
+
+  haka_db:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_DB: hakatime_postgres_db
+      POSTGRES_PASSWORD: hakatime_postgres_pass
+      POSTGRES_USER: hakatime_postgres_user
+    volumes:
+      - ./deploy_db_data:/var/lib/postgresql/data
+
+networks:
+  traefik_reverse_proxy:
+    external: true
+
+# ------------------------------------
+
+# Client setup
+# Open File : ~/.wakatime.cfg
+
+# Add
+# [settings]
+# api_key=<generated_token>
+# api_url=<hakatime_instance_url>/api/v1/users/current/heartbeats.bulk
+
+# ------------------------------------
+
+# Plugins
+# https://wakatime.com/plugins
+
+# ------------------------------------

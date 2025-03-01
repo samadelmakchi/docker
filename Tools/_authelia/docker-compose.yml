@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  authelia:
+    image: authelia/authelia:latest
+    container_name: authelia
+    environment:
+      - TZ=Europe/London
+      - JWT_SECRET=your-secret-key
+      - SESSION_SECRET=your-session-secret
+      - STORAGE_ENCRYPTION_KEY=your-encryption-key
+    volumes:
+      - authelia_data:/config
+    ports:
+      - 9091:9091
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.authelia.rule=Host(`authelia.elmakchi.ir`)"
+      - "traefik.http.routers.authelia.entrypoints=websecure"
+      - "traefik.http.routers.authelia.tls.certresolver=myresolver"
+      - "traefik.http.services.authelia.loadbalancer.server.port=80"
+    networks:
+      - traefik_reverse_proxy
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    networks:
+      - traefik_reverse_proxy
+
+volumes:
+  authelia_data:
+
+networks:
+  traefik_reverse_proxy:
+    external: true
