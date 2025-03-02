@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+
+  terraform:
+    image: hashicorp/terraform:latest
+    container_name: terraform
+    volumes:
+      - ./terraform-config:/workspace
+    command: ["bash"]
+    networks:
+      - traefik_reverse_proxy
+
+  gaia:
+    image: "gaiaapp/gaia"
+    container_name: giga
+    ports: 
+      - "8080:8080"
+    environment:
+      - "GAIA_MONGODB_URI=mongodb://mongo/gaia"
+      - "GAIA_RUNNER_API_PASSWORD=123456"
+      - "GAIA_EXTERNAL_URL=http://gaia:8080"
+    networks:
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gaia.rule=Host(`gaia.elmakchi.ir`)"
+      - "traefik.http.routers.gaia.entrypoints=websecure"
+      - "traefik.http.routers.gaia.tls.certresolver=myresolver"
+      - "traefik.http.services.gaia.loadbalancer.server.port=8080"
+    volumes:
+      - ./giga-config:/config  # دایرکتوری پیکربندی Giga
+      - ./giga-data:/data      # دایرکتوری داده‌ها برای Giga
+
+  runner:
+    image: "gaiaapp/runner"
+    container_name: gaiaapp-runner
+    environment:
+      - "GAIA_URL=http://gaia:8080"
+      - "GAIA_RUNNER_API_PASSWORD=123456"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - traefik_reverse_proxy
+
+  mongo:
+    image: "mongo:4.4"
+    container_name: mongo-giga
+    networks:
+      - traefik_reverse_proxy
+
+networks:
+  traefik_reverse_proxy:
+    external: true

@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  bigbluebutton:
+    image: bigbluebutton/bigbluebutton
+    container_name: bigbluebutton
+    ports:
+      - "80:80"
+      - "443:443"
+      - "1935:1935"
+      - "7443:7443"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - BBB_SECRET=your-secret-here
+      - BBB_SERVER=localhost
+      - BBB_HOST=localhost
+      - BBB_PORT=80
+    volumes:
+      - bbb-data:/var/bigbluebutton
+    depends_on:
+      - redis
+      - nginx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bigbluebutton.rule=Host(`bigbluebutton.elmakchi.ir`)"
+      - "traefik.http.routers.bigbluebutton.entrypoints=websecure"
+      - "traefik.http.routers.bigbluebutton.tls.certresolver=myresolver"
+      - "traefik.http.services.bigbluebutton.loadbalancer.server.port=80"
+    networks:
+      - traefik_reverse_proxy
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - traefik_reverse_proxy
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - bigbluebutton
+    networks:
+      - traefik_reverse_proxy
+
+volumes:
+  bbb-data:
+    driver: local
+
+networks:
+  traefik_reverse_proxy:
+    external: true
+

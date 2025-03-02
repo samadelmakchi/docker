@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  caprover:
+    image: caprover/caprover:latest
+    container_name: caprover
+    restart: always
+    environment:
+      - MAIN_NODE_IP=127.0.0.1
+      - CAPROVER_PASSWORD=61656165
+      - ACCEPTED_TERMS=true
+      - MAIN_NODE_IP_ADDRESS=127.0.0.1
+      - BY_PASS_PROXY_CHECK=TRUE
+    ports:
+      - "80:80"                      # پورت HTTP
+      - "443:443"                    # پورت HTTPS
+      - "3000:3000"                  # پورت داشبورد CapRover
+    volumes:
+      - /var/lib/caprover:/captain/data
+      - /var/run/docker.sock:/var/run/docker.sock  # دسترسی به docker.sock
+    networks:
+      - traefik_reverse_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.caprover.rule=Host(`caprover.elmakchi.ir`)"
+      - "traefik.http.routers.caprover.entrypoints=websecure"
+      - "traefik.http.routers.caprover.tls.certresolver=myresolver"
+      - "traefik.http.services.caprover.loadbalancer.server.port=3000"
+
+networks:
+  traefik_reverse_proxy:
+    external: true

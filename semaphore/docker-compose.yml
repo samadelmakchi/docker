@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  # Semaphore service
+  semaphore:
+    image: semaphoreui/semaphore:latest
+    container_name: semaphore
+    ports:
+      - "3000:3000"  # پورت دسترسی به UI Semaphore
+    environment:
+      SEMAPHORE_DB_DIALECT: bolt
+      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ADMIN_PASSWORD: admin
+      SEMAPHORE_ADMIN_NAME: Samad Elmakchi
+      SEMAPHORE_ADMIN_EMAIL: samad.elmakchi@gmail.com
+    # volumes:
+    #   - ./semaphore-config:/etc/semaphore
+    #   - ./semaphore-data:/var/lib/semaphore
+    networks:
+      - traefik_reverse_proxy
+    restart: always 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.semaphoreui.rule=Host(`semaphoreui.elmakchi.ir`)"
+      - "traefik.http.routers.semaphoreui.entrypoints=websecure"
+      - "traefik.http.routers.semaphoreui.tls.certresolver=myresolver"
+      - "traefik.http.services.semaphoreui.loadbalancer.server.port=3000"
+
+  # Ansible service 
+  ansible:
+    image: williamyeh/ansible:alpine3
+    container_name: ansible
+    volumes:
+      - ./ansible:/ansible  # مسیر Playbook های Ansible شما
+    command: ["tail", "-f", "/dev/null"]  # این دستور باعث می‌شود کانتینر به صورت دائم در حال اجرا بماند
+    networks:
+      - traefik_reverse_proxy
+    restart: always 
+
+networks:
+  traefik_reverse_proxy:
+    external: true
+
+# volumes:
+#   semaphore-data:
+#     driver: local 

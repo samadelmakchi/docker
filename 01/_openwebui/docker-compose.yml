@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  open-webui:
+    image: open-webui/open-webui:latest
+    container_name: open-webui
+    restart: always
+    ports:
+      - "5000:5000"                           # پورت پیش‌فرض برای دسترسی به Web UI
+    environment:
+      - OPEN_WEBUI_API_KEY=your_api_key_here  # کلید API خود را وارد کنید اگر نیاز دارید
+      - OPEN_WEBUI_HOST=0.0.0.0               # تنظیمات میزبانی
+      - OPEN_WEBUI_PORT=5000                  # پورت برای دسترسی به Web UI
+    volumes:
+      - open-webui_data:/app/data             # پوشه داده‌ها و تنظیمات
+    networks:
+      - open-webui_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.openwebui.rule=Host(`openwebui.elmakchi.ir`)"
+      - "traefik.http.routers.openwebui.entrypoints=websecure"
+      - "traefik.http.routers.openwebui.tls.certresolver=myresolver"
+      - "traefik.http.services.openwebui.loadbalancer.server.port=5000"
+
+  redis:
+    image: redis:latest
+    container_name: open-webui_redis
+    restart: always
+    ports:
+      - "6379:6379"  # پورت پیش‌فرض برای Redis
+    networks:
+      - open-webui_network
+
+networks:
+  open-webui_network:
+    driver: bridge
+  traefik_reverse_proxy:
+    external: true
+
+volumes:
+  open-webui_data:
+
