@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+    app:
+        build: .
+        ports:
+            - '8081:80'
+            - '444:443'
+        environment:
+            - APACHE_RUN_DIR=/var/www/html
+            - APACHE_PID_FILE=/var/run/apache2/pid
+            - APACHE_RUN_USER=www-data
+            - APACHE_RUN_GROUP=www-data
+            - APACHE_LOG_DIR=/var/log/apache2
+        volumes:
+            - ./app:/var/www/html/
+        depends_on:
+            - db
+    
+    db:
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+        ports:
+            - localhost:3300:3306
+        volumes:
+            - ./data:/var/lib/mysql
+    
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        restart: always
+        ports:
+            - localhost:8082:80
+        environment:
+            - PMA_HOST=db
+            - PMA_PORT=3306
+            - MYSQL_USERNAME=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - UPLOAD_LIMIT=256M
+        links:
+            - db:db
+
+volumes:
+    web:
+    data:
