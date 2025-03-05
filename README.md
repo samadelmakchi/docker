@@ -1,82 +1,37 @@
+### DevOps
+DevOps یک فرهنگ و مجموعه‌ای از روش‌ها است که برای بهبود همکاری و ارتباط بین تیم‌های توسعه‌دهندگان (Development) و تیم‌های عملیات (Operations) طراحی شده است. هدف اصلی DevOps تسریع در فرآیند توسعه نرم‌افزار و کاهش فاصله بین نوشتن کد و پیاده‌سازی آن در محیط تولید است. این فرهنگ با استفاده از ابزارها و خودکارسازی فرآیندها، به تیم‌ها این امکان را می‌دهد که به‌طور مداوم نرم‌افزارها را تست، به‌روزرسانی، و مستقر کنند. DevOps بر اصول همکاری، بازخورد مداوم، و تحویل مداوم (CI/CD) تأکید دارد و به تیم‌ها کمک می‌کند تا نرم‌افزار را سریع‌تر و با کیفیت بالاتر ارائه دهند.
+
+### Site Reliability Engineering (SRE)
+Site Reliability Engineering (SRE) یک رشته مهندسی است که بر روی بهبود قابلیت اطمینان، عملکرد و مقیاس‌پذیری سیستم‌های نرم‌افزاری در مقیاس‌های بزرگ تمرکز دارد. این حوزه با ترکیب اصول مهندسی نرم‌افزار و عملیات، تلاش می‌کند تا سیستم‌های پیچیده را به‌طور مداوم قابل اعتماد، کارآمد و مقیاس‌پذیر نگه دارد. SRE به‌طور خاص بر روی بهبود دسترسی، کاهش زمان‌های خرابی، و مدیریت ترافیک در سیستم‌های توزیع‌شده تمرکز دارد و از شاخص‌های کلیدی مانند Service Level Objectives (SLO) و Service Level Indicators (SLI) برای ارزیابی و بهبود عملکرد سیستم‌ها استفاده می‌کند. علاوه بر این، SRE از خودکارسازی، نظارت دقیق، و فرآیندهای خطایابی برای جلوگیری از بروز مشکلات و کاهش زمان‌های خرابی استفاده می‌کند، به طوری که تیم‌های توسعه بتوانند بیشتر بر روی ویژگی‌های جدید و توسعه محصولات تمرکز کنند.
+
+### تفاوت DevOps با SRE
+تفاوت DevOps با SRE در این است که Site Reliability Engineering (SRE) بیشتر بر حفظ و بهبود قابلیت اطمینان سیستم‌های تولید تمرکز دارد. در حالی که DevOps به‌طور کلی به یکپارچه‌سازی توسعه و عملیات می‌پردازد و بر خودکارسازی، سرعت و بهره‌وری تاکید دارد، SRE با استفاده از اصول مهندسی نرم‌افزار و روش‌های دقیق‌تر، به‌ویژه در مورد نظارت و نگهداری سیستم‌های مقیاس‌پذیر، به تضمین عملکرد، در دسترس بودن و قابلیت اطمینان سیستم‌ها می‌پردازد. در واقع، SRE به‌عنوان یک تخصص در داخل DevOps دیده می‌شود که بیشتر بر روی عملکرد و پایداری سیستم‌های عملیاتی تمرکز دارد.
+
+---
+
+### CI/CD
+CI/CD مخفف Continuous Integration (ادغام مداوم) و Continuous Delivery/Continuous Deployment (تحویل/انتشار مداوم) است و یک مجموعه از فرآیندها و بهترین شیوه‌ها است که به تیم‌های نرم‌افزاری کمک می‌کند تا کد را به‌صورت مداوم و خودکار در محیط‌های مختلف تست، ساخته، و مستقر کنند. Continuous Integration (CI) به معنای ادغام مداوم تغییرات کد از تیم‌های مختلف در یک مخزن مشترک است، به‌طوری که تغییرات به‌طور روزانه یا حتی ساعتی تست و بررسی می‌شوند. این فرآیند باعث کاهش بروز خطاهای کد و مشکلات مربوط به هماهنگی در تیم‌های بزرگ می‌شود. در کنار آن، Continuous Delivery (CD) به این معناست که پس از ساخت و تست موفقیت‌آمیز، نرم‌افزار به‌طور خودکار آماده انتشار به محیط تولید می‌شود، در حالی که Continuous Deployment (CD) به معنای انتشار خودکار تغییرات به محیط تولید است، بدون نیاز به مداخله دستی. CI/CD به‌طور کلی باعث تسریع در فرآیند توسعه، بهبود کیفیت نرم‌افزار و افزایش سرعت تحویل می‌شود.
+
+### GitOps
+GitOps یک روش مدرن برای مدیریت زیرساخت‌ها و عملیات در سیستم‌های توزیع‌شده است که بر اساس اصول Git و خودکارسازی ساخته شده است. در این روش، تمام تغییرات و تنظیمات مربوط به زیرساخت، کدهای برنامه‌نویسی و پیکربندی‌ها در مخزن‌های Git ذخیره می‌شوند و از آنجا به‌طور خودکار به محیط‌های تولید یا تست اعمال می‌شوند. این به معنای استفاده از Git به عنوان منبع حقیقت (Source of Truth) برای تمامی تغییرات در سیستم است. با استفاده از GitOps، فرآیندهای استقرار، بروزرسانی و پیکربندی به‌طور کامل خودکار می‌شوند و هر تغییری در سیستم باید ابتدا از طریق درخواست‌های تغییر (Pull Requests) در Git انجام شود. GitOps امکان نظارت دقیق‌تر، بازگشت آسان به وضعیت‌های قبلی، و کاهش خطاهای انسانی را فراهم می‌کند و با استفاده از ابزارهایی مانند ArgoCD و Flux برای هماهنگی و اجرای تغییرات به‌صورت خودکار در کلاسترهای Kubernetes یا دیگر سیستم‌های توزیع‌شده، فرآیندهای DevOps را بهبود می‌بخشد.
+
+### تفاوت CI/CD با GitOps
+CI/CD و GitOps دو رویکرد متفاوت در فرآیندهای توسعه نرم‌افزار و مدیریت زیرساخت هستند. CI/CD (ادغام مداوم و تحویل مداوم) بر روی خودکارسازی فرآیندهای ساخت، تست و استقرار نرم‌افزار تمرکز دارد، به طوری که کد جدید به‌طور مداوم به مخزن گیت ادغام شده و پس از گذراندن مراحل تست به محیط‌های تولید یا تست ارسال می‌شود. در مقابل، GitOps رویکردی برای مدیریت زیرساخت‌ها است که در آن تنظیمات زیرساخت و پیکربندی‌ها به صورت declarative در Git ذخیره می‌شوند و هر تغییر از طریق Git به طور خودکار به محیط‌های مختلف اعمال می‌شود. به عبارت دیگر، GitOps از Git به‌عنوان منبع حقیقت برای زیرساخت‌ها استفاده می‌کند و تغییرات را از طریق ابزارهایی مانند ArgoCD یا Flux به محیط‌ها اعمال می‌کند. در حالی که CI/CD بیشتر بر فرآیندهای توسعه نرم‌افزار تمرکز دارد، GitOps بیشتر برای مدیریت و استقرار زیرساخت‌ها با استفاده از Git و خودکارسازی است.
+
+---
+
+### Docker
+Docker یک پلتفرم متن‌باز است که به توسعه‌دهندگان و تیم‌های فناوری اطلاعات این امکان را می‌دهد که برنامه‌ها را در کانتینرهای مستقل و مقیاس‌پذیر بسته‌بندی کنند و آن‌ها را به راحتی در هر محیطی اجرا کنند. کانتینرها به‌طور خاص منابع سیستم را به‌طور بهینه مدیریت کرده و همه وابستگی‌های لازم برای اجرای یک برنامه را در خود دارند، بنابراین این برنامه‌ها می‌توانند به‌راحتی از محیط‌های توسعه به محیط‌های تولید منتقل شوند. Docker به توسعه‌دهندگان کمک می‌کند که فرآیندهای ساخت، تست، و استقرار را خودکار کرده و محیط‌های یکسانی را در تمامی مراحل چرخه حیات نرم‌افزار فراهم کنند. این فناوری در مقیاس‌پذیری، کاهش پیچیدگی‌ها و تسریع در روند توسعه بسیار مؤثر است و در بسیاری از پروژه‌های مدرن، به‌ویژه در استفاده از Kubernetes برای ارکستراسیون کانتینرها، کاربرد فراوان دارد.
+
 ### Docker Compose
-Docker Compose ابزاری کاربردی برای مدیریت و اجرای برنامه‌های چندکانتینری است که به دلیل مزایایی همچون سادگی در مدیریت سرویس‌ها، افزایش هماهنگی و بازتولیدپذیری محیط‌ها، و تسهیل فرآیند تست و توسعه به طور گسترده استفاده می‌شود. با Docker Compose، تمام سرویس‌ها و وابستگی‌های یک برنامه در یک فایل YAML تعریف می‌شوند، که این امر مستندسازی و اجرای سرویس‌های متعدد را تنها با یک دستور ممکن می‌سازد. همچنین این ابزار با فراهم کردن شبکه‌های داخلی بین کانتینرها، ارتباط بین سرویس‌ها را بدون نیاز به پیکربندی‌های اضافی تسهیل می‌کند و به توسعه‌دهندگان اجازه می‌دهد محیط‌هایی دقیقاً مشابه تولید ایجاد کرده و با اطمینان بیشتر تغییرات را بررسی کنند.
+Docker Compose یک ابزار متن‌باز است که به شما امکان می‌دهد چندین کانتینر Docker را به‌طور همزمان و به‌صورت هماهنگ مدیریت کنید. این ابزار با استفاده از یک فایل YAML به نام docker-compose.yml، تنظیمات کانتینرهای مختلف را تعریف کرده و آن‌ها را به‌طور خودکار راه‌اندازی می‌کند. Docker Compose برای پروژه‌های پیچیده که به چندین سرویس مختلف نیاز دارند، مانند یک اپلیکیشن وب که نیاز به پایگاه‌داده، کش، و سرویس‌های مختلف دارد، بسیار مفید است. به جای اجرای هر کانتینر به‌طور دستی، Docker Compose به شما این امکان را می‌دهد که تمام سرویس‌ها را با یک دستور ساده (docker-compose up) شروع، متوقف و مدیریت کنید. این ابزار به‌ویژه در فرآیند توسعه، تست و استقرار اپلیکیشن‌های مبتنی بر میکروسرویس‌ها یا چندین سرویس مختلف کاربرد دارد و فرایندهای خودکارسازی را تسهیل می‌کند.
 
-[t01]: #
-[t02]: https://github.com/samadelmakchi/docker/tree/main/kanboard
-[t03]: https://github.com/samadelmakchi/docker/tree/main/nextcloud
-[t04]: https://github.com/samadelmakchi/docker/tree/main/kimai
-[t05]: #
-[t06]: https://github.com/samadelmakchi/docker/tree/main/mattermost-focalboard
-[t07]: #
-[t08]: https://github.com/samadelmakchi/docker/tree/main/trudesk
+### Dockerize
+Dockerize به فرآیند تبدیل یک اپلیکیشن یا سرویس به یک کانتینر Docker گفته می‌شود، به‌طوری که اپلیکیشن می‌تواند به‌راحتی در هر محیطی اجرا شود، بدون توجه به پیکربندی یا وابستگی‌های سیستم عامل میزبان. این فرآیند شامل ایجاد یک فایل Dockerfile است که تمامی مراحل مورد نیاز برای ساخت کانتینر، از جمله نصب وابستگی‌ها، پیکربندی محیط و کپی کردن کدهای اپلیکیشن به داخل کانتینر را تعریف می‌کند. با Dockerize کردن اپلیکیشن‌ها، توسعه‌دهندگان می‌توانند محیط‌های پایدار و قابل پیش‌بینی برای اجرا و تست ایجاد کنند و از مشکلات مرتبط با تفاوت‌های سیستم‌عاملی جلوگیری کنند. این فرآیند در پروژه‌های مختلف، به‌ویژه در پروژه‌های چندسرویس و میکروسرویس‌ها، بسیار مهم است زیرا باعث تسهیل در استقرار، مقیاس‌پذیری و حمل‌پذیری اپلیکیشن‌ها می‌شود.
 
-[d01]: https://github.com/samadelmakchi/docker/tree/main/portainer
-[d02]: #
-[d03]: https://github.com/samadelmakchi/docker/tree/main/rabbitmq
-[d04]: https://github.com/samadelmakchi/docker/tree/main/apprise
-[d05]: https://github.com/samadelmakchi/docker/tree/main/vscode
-[d06]: https://github.com/samadelmakchi/docker/tree/main/hakatime
-[d07]: https://github.com/samadelmakchi/docker/tree/main/drawdb
-[d08]: https://github.com/samadelmakchi/docker/tree/main/drawio
+---
 
-[s01]: #
-[s02]: #
-[s03]: https://github.com/samadelmakchi/docker/tree/main/uptime_kuma
-[s04]: https://github.com/samadelmakchi/docker/tree/main/poste.io
-[s05]: https://github.com/samadelmakchi/docker/tree/main/mailserver
-[s06]: https://github.com/samadelmakchi/docker/tree/main/roundcube
-[s07]: https://github.com/samadelmakchi/docker/tree/main/cypht
-[s08]: https://github.com/samadelmakchi/docker/tree/main/elkarbackup
-[s09]: #
-[s10]: #
+### نقشه راه یادگیری DevOps
+![devOps - SRE](devops-sre.jpg)
 
-[o01]: #
-[o02]: https://github.com/samadelmakchi/docker/tree/main/gitea
-[o03]: #
-[o04]: #
-[o05]: #
-[o06]: #
-[o07]: #
-[o08]: https://github.com/samadelmakchi/docker/tree/main/prometheus-grafana
-[o09]: #
-[o10]: https://github.com/samadelmakchi/docker/tree/main/elasticsearch-kibana-logstash
-[o11]: #
-[o12]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
-[o13]: https://github.com/samadelmakchi/docker/tree/main/vault-consul
-[o14]: #
 
-[k01]: #
-[k02]: #
-[k03]: #
-[k04]: #
-[k05]: #
-[k06]: #
-[k07]: #
-[k08]: #
-
-|DevOps                                                       |Development                                   |Team Managment                               |Server                                                   |Dockerize           |
-|-------------------------------------------------------------|----------------------------------------------|---------------------------------------------|---------------------------------------------------------|--------------------|
-|VCS Hosting:<br/> [`Gitlab`][o01] [`Gitea`][o02]             |Container Management:<br/> [`Portainer`][d01] |Project Managment:<br/> [`Open Proect`][t01] |DNS:<br/> [`Webmin + Bind9`][s01]                        |[`FastAPI`][k01]    |
-|CI/CD:<br/> [`Jenkins`][o03] [`Gitlab CI`][o04]              |Repository Manager:<br/> [`Nexus`][d02]       |Task Managment:<br/> [`Kanboard`][t02]       |Reverse Proxy:<br/> [`Traefik`][s02]                     |[`Django`][k02]     |
-|Ansible:<br/> [`AWX`][o05] [`Semaphore`][o06]                |Message Broker:<br/> [`RabbitMQ`][d03]        |Cloud Storage:<br/> [`Nextcloud`][t03]       |Network Monitoring:<br/> [`Uptime Kuma`][s03]            |[`PHP`][k03]        |
-|Terraform:<br/> [`Gaia`][o07]                                |Push Notifications:<br/> [`Apprise`][d04]     |Time Tracking:<br/> [`Kimai`][t04]           |Mail Server:<br/> [`Poste.io`][s04] [`Mail Server`][s05] |[`Nodejs`][k04]     |
-|Monitor:<br/> [`Grafana + Prometheus`][o08] [`Netdata`][o09] |IDE:<br/> [`VS Code`][d05]                    |Password Managment:<br/> [][t05]             |Webmail Client:<br/> [`Roundcube`][s06] [`Cypht`][s07]   |[`Vue`][k05]        |
-|Log Management:<br/> [`ELK`][o10] [`Dozzle`][o11]            |Time Tracking:<br/> [`HakaTime`][d06]         |Team Communication:<br/> [`Mattermost`][t06] |Backup:<br/> [`ElkarBackup`][s08]                        |[`React`][k06]      |
-|Service Mesh:<br/> [`Consul`][o12]                           |Database Tools:<br/> [`DrawDB`][d07]          |Video Confrance:<br/> [`Slack`][t07]         |Database Backup:<br/> [][s09]                            |[`Python ML`][k07]  |
-|Secret Management:<br/> [`Vault`][o13]                       |Diagram Tools:<br/> [`Draw.io`][d08]          |Help Desk:<br/> [`Trudesk`][t08]             |Firewall:<br/> [][s10]                                   |[`Wordpress`][k08]  |
-|Code Quality Assurance:<br/> [`SonarQube`][o14]              |                                              |                                             |                                                         |                    |
-
-----
-
-[z01]: README.md
-[z02]: README-az.md
-[z03]: README-tr.md
-[z04]: README-fa.md
-
-[1.z01]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/en.svg (English)
-[1.z02]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/az.svg (Azərbaycani)
-[1.z03]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/tr.svg (Türkisch)
-[1.z04]: https://raw.githubusercontent.com/samadelmakchi/samadelmakchi/main/flag/fa.svg (فارسی)
-
-### Translate
-[![1.z01]][z01] [![1.z03]][z03] [![1.z02]][z02] 
